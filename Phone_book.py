@@ -28,7 +28,6 @@ def Phone_book():
 		if Choice == "1":
 			for i in range(1, len(asset)+1):
 				print("{}. {} : {}".format(i,asset[i-1],dictionary[asset[i-1]]))
-			#Call = input("Do you Want To Continue Y or Exit: ")
                 
 		elif Choice == "2":
 			Name = input("Enter a  Name :")
@@ -43,11 +42,14 @@ def Phone_book():
 			else:
 				print("This is  not a valid Number")
 
-			file = open("contactbook.txt",'a')
-			file.write("{} : {}".format(Name,Phone_Number))
-			file.write("\n")
+			if (Name in NameList) or (Phone_Number in PhoneList):
+				print("Duplicate values")
+
+			else : 
+				file = open("contactbook.txt",'a')
+				file.write("{} : {}".format(Name,Phone_Number))
+				file.write("\n")
 			file.close()
-			#Call = input("Do you Want To Continue Y or Exit: ")
 		elif Choice =="3":
 			user_choice = input("Enter Name :")
 			if user_choice in asset :
@@ -64,7 +66,6 @@ def Phone_book():
 
 			else : 
 				print("Record Not Found")
-			#Call = input("Do you Want To Continue Y or Exit: ")
 			
 		elif Choice =="4":
 			Name = input("Enter Name Delete Contact: ")
@@ -78,7 +79,6 @@ def Phone_book():
 				file.close()
 			else:
 				print(Name ,"Record Not Found")
-			#Call = input("Do you Want To Continue Y or Exit: ")
 			
 		elif Choice == "5":
 			user_choice = input("Enter Name or Number you wish to search : ")
@@ -91,8 +91,6 @@ def Phone_book():
 
 		else: 
 			print("Invalid Choice")
-			#Call = input("Do you Want To Continue Y or Exit: ")
-		#Call = input("Do you Want To Continue Y or Exit: ")
 	except SyntaxError:
 		print("Invalid Syntax ")
 	except NameError:
@@ -102,6 +100,9 @@ def Phone_book():
 	except SystemError:
 		print("interpreter detects internal error")
 
+
+
+	
 def call_book():
 	Call = input("Do you Want To Continue Y or N:\n ")
 	while True:
@@ -113,7 +114,6 @@ def call_book():
 		else : 
 			print("Invalid Choice")
 			call_book()
-
 
 Phone_book()
 call_book()
